@@ -18,7 +18,7 @@ module.exports = function (config) {
 			'bower_components/rangy/rangy-selectionsaverestore.js',
 			'bower_components/angular/angular.min.js',
 			'bower_components/angular-mocks/angular-mocks.js',
-			'dist/textAngular-sanitize.js',
+			'bower_components/angular-sanitize/angular-sanitize.js',
 			'dist/textAngularSetup.js',
 			'dist/textAngular.js',
 			'test/helpers.js',

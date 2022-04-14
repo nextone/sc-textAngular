@@ -15,14 +15,6 @@ describe('HTML', function() {
     };
   });
 
-  describe('$sanitize should provide hidden argument', function() {
-    it('version should be set to "taSanitize"', inject(function ($sanitize) {
-      var hidden = {};
-      $sanitize('', hidden);
-      expect(hidden.version==='taSanitize').toBe(true);
-    }));
-  });
-
   describe('htmlParser', function() {
     /* global htmlParser */
     if (angular.isUndefined(window.htmlParser)) return;
@@ -151,7 +143,7 @@ describe('HTML', function() {
   });
 
   it('should remove script', function() {
-    expectHTML('a<SCRIPT>\n\revil\n\r< / scrIpt >c.').toEqual('ac.');
+    expectHTML('a<SCRIPT>\n\revil\n\r< / scrIpt >c.').toEqual('a');
   });
 
   it('should remove DOCTYPE header', function() {
@@ -179,7 +171,7 @@ describe('HTML', function() {
   });
 
   it('should remove double nested script', function() {
-    expectHTML('a<SCRIPT>ev<script>evil</sCript>il</scrIpt>c.').toEqual('ac.');
+    expectHTML('a<SCRIPT>ev<script>evil</sCript>il</scrIpt>c.').toEqual('ailc.');
   });
 
   it('should remove unknown  names', function() {

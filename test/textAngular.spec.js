@@ -634,68 +634,6 @@ describe('textAngular', function(){
     });
 
 
-
-    describe('should respect taUnsafeSanitizer attribute', function () {
-        var element2, displayElements, $timeout;
-        beforeEach(inject(function(_$timeout_){
-            $timeout = _$timeout_;
-        }));
-        describe('without ng-model', function(){
-            beforeEach(inject(function (_$compile_, _$rootScope_, textAngularManager) {
-                $rootScope = _$rootScope_;
-                element = _$compile_('<text-angular name="test" ta-unsafe-sanitizer="true"><p>Test Contents</p></text-angular>')($rootScope);
-                $rootScope.$digest();
-                editorScope = textAngularManager.retrieveEditor('test').scope;
-                element = textAngularManager.retrieveEditor('test').scope.displayElements.text;
-                element2 = textAngularManager.retrieveEditor('test').scope.displayElements.html;
-            }));
-
-            it('allow bad tags', function () {
-                element.append('<bad-tag>Test 2 Content</bad-tag>');
-                element.triggerHandler('keyup');
-                $rootScope.$digest();
-                $timeout.flush();
-                expect(element2.val()).toBe('<p>Test Contents</p>\n<p><bad-tag>Test 2 Content</bad-tag></p>');
-            });
-
-            it('not allow malformed html', function () {
-                element.append('<bad-tag Test 2 Content</bad-tag>');
-                element.triggerHandler('keyup');
-                $rootScope.$digest();
-                $timeout.flush();
-                expect(element2.val()).toBe('<p>Test Contents</p>');
-            });
-        });
-
-        describe('with ng-model', function(){
-            beforeEach(inject(function (_$compile_, _$rootScope_, textAngularManager) {
-                $rootScope = _$rootScope_;
-                $rootScope.html = '<p>Test Contents</p>';
-                // note that ta-unsafe-sanitizer has no effect for these tests, we simply set it true here to enable 100% coverage
-                element = _$compile_('<text-angular name="test" ta-keep-styles="false" ta-unsafe-sanitizer="true" ng-model="html"></text-angular>')($rootScope);
-                $rootScope.$digest();
-                editorScope = textAngularManager.retrieveEditor('test').scope;
-                element = editorScope.displayElements.text;
-            }));
-
-            it('allow bad tags', function () {
-                element.append('<bad-tag>Test 2 Content</bad-tag>');
-                element.triggerHandler('keyup');
-                $rootScope.$digest();
-                $timeout.flush();
-                expect($rootScope.html).toBe('<p>Test Contents</p><p><bad-tag>Test 2 Content</bad-tag></p>');
-            });
-
-            it('not allow malformed html', function () {
-                element.append('<bad-tag Test 2 Content</bad-tag>');
-                element.triggerHandler('keyup');
-                $rootScope.$digest();
-                $timeout.flush();
-                expect($rootScope.html).toBe('<p>Test Contents</p>');
-            });
-        });
-    });
-
     describe('Updates without ng-model', function(){
         var displayElements;
         beforeEach(inject(function (_$compile_, _$rootScope_, textAngularManager, $timeout) {

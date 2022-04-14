@@ -84,11 +84,6 @@ angular.module('textAngularSetup', [])
 .value('taTools', taTools)
 // Here we set up the global display defaults, to set your own use a angular $provider#decorator.
 .value('taOptions',  {
-    //////////////////////////////////////////////////////////////////////////////////////
-    // forceTextAngularSanitize
-    // set false to allow the textAngular-sanitize provider to be replaced
-    // with angular-sanitize or a custom provider.
-    forceTextAngularSanitize: true,
     ///////////////////////////////////////////////////////////////////////////////////////
     // keyMappings
     // allow customizable keyMappings for specialized key boards or languages
@@ -457,10 +452,7 @@ angular.module('textAngularSetup', [])
     // test for the version of $sanitize that is in use
     // You can disable this check by setting taOptions.textAngularSanitize == false
     var gv = {}; $sanitize('', gv);
-    /* istanbul ignore next, throws error */
-    if ((taOptions.forceTextAngularSanitize===true) && (gv.version !== 'taSanitize')) {
-        throw angular.$$minErr('textAngular')("textAngularSetup", "The textAngular-sanitize provider has been replaced by another -- have you included angular-sanitize by mistake?");
-    }
+
     taRegisterTool("html", {
         iconclass: 'fa fa-code',
         tooltiptext: taTranslations.html.tooltip,
@@ -2778,7 +2770,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
             var _isReadonly = false;
             var _focussed = false;
             var _skipRender = false;
-            var _disableSanitizer = attrs.taUnsafeSanitizer || taOptions.disableSanitizer;
+            var _disableSanitizer = taOptions.disableSanitizer;
             var _keepStyles = attrs.taKeepStyles || taOptions.keepStyles;
             var _lastKey;
             // see http://www.javascripter.net/faq/keycodes.htm for good information
@@ -4264,11 +4256,6 @@ textAngular.directive("textAngular", [
                 if(attrs.taDefaultWrap) {
                     // taDefaultWrap is only applied to the text and not the html view
                     scope.displayElements.text.attr('ta-default-wrap', attrs.taDefaultWrap);
-                }
-
-                if(attrs.taUnsafeSanitizer){
-                    scope.displayElements.text.attr('ta-unsafe-sanitizer', attrs.taUnsafeSanitizer);
-                    scope.displayElements.html.attr('ta-unsafe-sanitizer', attrs.taUnsafeSanitizer);
                 }
 
                 if(attrs.taKeepStyles){
