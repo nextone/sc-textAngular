@@ -152,10 +152,14 @@ module.exports = function (grunt) {
 		},
 		karma: {
 			jquery: {
-				options: testConfig('karma-jquery.conf.js')
+				options: testConfig('karma-jquery.conf.js', {
+					failOnFailingTestSuite: false
+				})
 			},
 			jqlite: {
-				options: testConfig('karma-jqlite.conf.js')
+				options: testConfig('karma-jqlite.conf.js', {
+					failOnFailingTestSuite: false
+				})
 			}
 		},
 		jshint: {
