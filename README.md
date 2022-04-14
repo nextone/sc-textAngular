@@ -23,8 +23,6 @@ To upgrade from version 1.2.2 or earlier you need to follow these steps:
 
 ### Where to get it
 
-**NOTE:** Our `textAngular-sanitize.js` and angular.js's `angular-sanitize.js` are the SAME file, you must include one or the other but not both. We highly recommend using `textAngular-sanitize.js` as it loosens some parts of the sanitizer that are far too strict for our uses and adds some more features we need.
-
 **Via Bower:**
 
 Run `bower install textAngular` from the command line.
@@ -32,7 +30,6 @@ Include script tags similar to the following:
 ```html
 <link rel='stylesheet' href='/bower_components/textAngular/dist/textAngular.css'>
 <script src='/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
-<script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
 <script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
 ```
 
@@ -43,17 +40,11 @@ Include script tags similar to the following:
 ```html
 <link rel='stylesheet' href='/node_modules/textangular/dist/textAngular.css'>
 <script src='/node_modules/textangular/dist/textAngular-rangy.min.js'></script>
-<script src='/node_modules/textangular/dist/textAngular-sanitize.min.js'></script>
 <script src='/node_modules/textangular/dist/textAngular.min.js'></script>
 ```
 Install using commonjs (eg componentjs, Webpack, Browserify):
 ```
 angular.module('myModule', [require('angular-sanitize'), require('textAngular')]);
-```
-Optionally, install textAngular-sanitize.min.js by requiring it BEFORE requring textAngular:
-```
-require('textangular/dist/textAngular-sanitize.min');
-angular.module('myModule', [require('textAngular')]);
 ```
 For CSS support with Webpack, install the style-loader, css-loader (and postcss-loader) and configure the loader in your webpack.config.js similar to the following:
 ```
@@ -67,7 +58,6 @@ loaders: [
 Include script tags similar to the following:
 ```html
 <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-rangy.min.js'></script>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-sanitize.min.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular.min.js'></script>
 ```
 
@@ -75,7 +65,7 @@ Include script tags similar to the following:
 
 Include script tag similar to the following: (For details on how this works see: [https://github.com/jsdelivr/jsdelivr#load-multiple-files-with-single-http-request](https://github.com/jsdelivr/jsdelivr#load-multiple-files-with-single-http-request))
 ```html
-<script src='http://cdn.jsdelivr.net/g/angular.textangular@1.5.0(textAngular-rangy.min.js+textAngular-sanitize.min.js+textAngular.min.js)'></script>
+<script src='http://cdn.jsdelivr.net/g/angular.textangular@1.5.0(textAngular-rangy.min.js+textAngular.min.js)'></script>
 ```
 
 **Via Github**
@@ -84,17 +74,15 @@ Download the code from [https://github.com/fraywing/textAngular/releases/latest]
 ```html
 <link rel='stylesheet' href='/path/to/unzipped/files/dist/textAngular.min.css'>
 <script src='/path/to/unzipped/files/dist/textAngular-rangy.min.js'></script>
-<script src='/path/to/unzipped/files/dist/textAngular-sanitize.min.js'></script>
 <script src='/path/to/unzipped/files/dist/textAngular.min.js'></script>
 ```
 
 ### Usage
 
 1. Include (`rangy-core.js` and `rangy-selectionsaverestore.js`) or `textAngular-rangy.min.js` in your project using script tags
-2. Include `textAngular-sanitize.js` or `textAngular-sanitize.min.js` in your project using script tags
-3. Include (`textAngularSetup.js` and `textAngular.js`) or `textAngular.min.js` (textAngularSetup.js is included inside textAngular.min.js)
-4. Add a dependency to `textAngular` in your app module, for example: ```angular.module('myModule', ['textAngular'])```.
-5. Create an element to hold the editor and add an `ng-model="htmlVariable"` attribute where `htmlVariable` is the scope variable that will hold the HTML entered into the editor:
+2. Include (`textAngularSetup.js` and `textAngular.js`) or `textAngular.min.js` (textAngularSetup.js is included inside textAngular.min.js)
+3. Add a dependency to `textAngular` in your app module, for example: ```angular.module('myModule', ['textAngular'])```.
+4. Create an element to hold the editor and add an `ng-model="htmlVariable"` attribute where `htmlVariable` is the scope variable that will hold the HTML entered into the editor:
 ```html
 <div text-angular ng-model="htmlVariable"></div>
 ```

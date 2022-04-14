@@ -370,11 +370,6 @@ textAngular.directive("textAngular", [
                     scope.displayElements.text.attr('ta-default-wrap', attrs.taDefaultWrap);
                 }
 
-                if(attrs.taUnsafeSanitizer){
-                    scope.displayElements.text.attr('ta-unsafe-sanitizer', attrs.taUnsafeSanitizer);
-                    scope.displayElements.html.attr('ta-unsafe-sanitizer', attrs.taUnsafeSanitizer);
-                }
-
                 if(attrs.taKeepStyles){
                     scope.displayElements.text.attr('ta-keep-styles', attrs.taKeepStyles);
                     scope.displayElements.html.attr('ta-keep-styles', attrs.taKeepStyles);

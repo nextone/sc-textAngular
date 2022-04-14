@@ -35,7 +35,7 @@ describe('taBind.$formatters', function () {
         it('handle nested lists with comments', function(){
             $rootScope.html = '<ol><!--This is line 1--><li>Test Line 1</li><ul><!--Nested line 1-->   <li>Nested Line 1</li><li>Nested Line 2</li></ul><li>Test Line 3</li></ol>';
             $rootScope.$digest();
-            expect(element.val()).toBe('<ol><!--This is line 1-->\n\t<li>Test Line 1</li>\n\t<ul><!--Nested line 1-->   \n\t\t<li>Nested Line 1</li>\n\t\t<li>Nested Line 2</li>\n\t</ul>\n\t<li>Test Line 3</li>\n</ol>');
+            expect(element.val()).toBe('<ol>\n\t<li>Test Line 1</li>\n\t<ul>   \n\t\t<li>Nested Line 1</li>\n\t\t<li>Nested Line 2</li>\n\t</ul>\n\t<li>Test Line 3</li>\n</ol>');
         });
         it('handles no tags (should wrap)', function(){
             $rootScope.html = 'Test Line 1';
@@ -45,12 +45,12 @@ describe('taBind.$formatters', function () {
         it('handles html comments', function(){
             $rootScope.html = '<!--This is a comment--><p>Test Line 1</p>';
             $rootScope.$digest();
-            expect(element.val()).toBe('<!--This is a comment-->\n<p>Test Line 1</p>');
+            expect(element.val()).toBe('<p>Test Line 1</p>');
         });
         it('handles html comments with whitespace', function(){
             $rootScope.html = '<!--This is a comment-->     <p>Test Line 1</p>';
             $rootScope.$digest();
-            expect(element.val()).toBe('<!--This is a comment-->     \n<p>Test Line 1</p>');
+            expect(element.val()).toBe('     \n<p>Test Line 1</p>');
         });
     });
 });

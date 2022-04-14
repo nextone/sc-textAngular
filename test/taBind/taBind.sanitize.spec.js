@@ -29,28 +29,4 @@ describe('taBind.sanitize', function () {
         });
     });
 
-    describe('should respect taUnsafeSanitizer attribute', function () {
-        var $rootScope, element;
-        beforeEach(inject(function (_$compile_, _$rootScope_) {
-            $rootScope = _$rootScope_;
-            $rootScope.html = '<p>Test Contents</p>';
-            element = _$compile_('<div ta-bind contenteditable="contenteditable" ta-unsafe-sanitizer="true" ng-model="html"></div>')($rootScope);
-            $rootScope.$digest();
-        }));
-
-        it('allow bad tags', function () {
-            element.append('<bad-tag>Test 2 Content</bad-tag>');
-            $rootScope.updateTaBind();
-            $rootScope.$digest();
-            expect($rootScope.html).toBe('<p>Test Contents</p><p><bad-tag>Test 2 Content</bad-tag></p>');
-        });
-
-        it('not allow malformed html', function () {
-            element.append('<bad-tag Test 2 Content</bad-tag>');
-            $rootScope.updateTaBind();
-            $rootScope.$digest();
-            expect($rootScope.html).toBe('<p>Test Contents</p>');
-        });
-    });
-
 });

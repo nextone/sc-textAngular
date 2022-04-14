@@ -159,7 +159,7 @@ module.exports = function (grunt) {
 			}
 		},
 		jshint: {
-			files: ['src/*.js', 'test/*.spec.js', 'test/taBind/*.spec.js', '!src/textAngular-sanitize.js'],// don't hint the textAngularSanitize as they will fail
+			files: ['src/*.js', 'test/*.spec.js', 'test/taBind/*.spec.js'],// don't hint the textAngularSanitize as they will fail
 			options: {
 				eqeqeq: true,
 				immed: true,
@@ -176,7 +176,7 @@ module.exports = function (grunt) {
 			setupFiles: {
 				expand: true,
 				cwd: 'src/',
-				src: ['textAngularSetup.js', 'textAngular.css', 'textAngular-sanitize.js'],
+				src: ['textAngularSetup.js', 'textAngular.css'],
 				dest: 'dist/'
 			}
 		},
@@ -221,7 +221,6 @@ module.exports = function (grunt) {
 			my_target: {
 				files: {
 					'dist/textAngular-rangy.min.js': ['bower_components/rangy/rangy-core.js', 'bower_components/rangy/rangy-selectionsaverestore.js'],
-					'dist/textAngular-sanitize.min.js': ['src/textAngular-sanitize.js'],
 					'dist/textAngular.min.js': ['dist/textAngular.umd.js']
 				}
 			}

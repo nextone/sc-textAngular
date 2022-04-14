@@ -59,7 +59,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
             var _isReadonly = false;
             var _focussed = false;
             var _skipRender = false;
-            var _disableSanitizer = attrs.taUnsafeSanitizer || taOptions.disableSanitizer;
+            var _disableSanitizer = taOptions.disableSanitizer;
             var _keepStyles = attrs.taKeepStyles || taOptions.keepStyles;
             var _lastKey;
             // see http://www.javascripter.net/faq/keycodes.htm for good information
