@@ -131,14 +131,16 @@ module.exports = function (grunt) {
 			dist: ["dist"],
 		},
 		coverage: {
-			options: {
-				thresholds: {
-					'statements': 100,
-					'branches': 100,
-					'lines': 100,
-					'functions': 100
-				},
-			dir: 'coverage'
+			default: {
+				options: {
+					thresholds: {
+						'statements': 100,
+						'branches': 100,
+						'lines': 100,
+						'functions': 100
+					},
+					dir: 'coverage'
+				}
 			}
 		},
 		coveralls: {
