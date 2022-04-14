@@ -20,7 +20,7 @@
   "homepage": "http://textangular.com",
   "main": "./dist/textAngular.umd.js",
   "dependencies": {
-    "angular-sanitize": "^1.8.3",
+    "angular-sanitize": "^1.8.2",
     "rangy": "^1.3.0"
   },
   "browserDependencies": {
