@@ -70,6 +70,9 @@ var taTools = {};
 */
 // name and toolDefinition to add into the tools available to be added on the toolbar
 function registerTextAngularTool(name, toolDefinition){
+    // assign defaults
+    if(toolDefinition.iconinnerhtml === undefined) toolDefinition.iconinnerhtml = '';
+
     if(!name || name === '' || taTools.hasOwnProperty(name)) throw('textAngular Error: A unique name is required for a Tool Definition');
     if(
         (toolDefinition.display && (toolDefinition.display === '' || !validElementString(toolDefinition.display))) ||
@@ -5161,6 +5164,7 @@ textAngular.directive('textAngularToolbar', [
                         if(toolDefinition.iconclass){
                             var icon = angular.element('<i>'), content = toolElement[0].innerHTML;
                             icon.addClass(toolDefinition.iconclass);
+                            icon[0].innerHTML = toolDefinition.iconinnerhtml || '';
                             toolElement[0].innerHTML = '';
                             toolElement.append(icon);
                             if(content && content !== '') toolElement.append('&nbsp;' + content);
