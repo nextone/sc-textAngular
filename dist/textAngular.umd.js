@@ -2711,6 +2711,29 @@ angular.module('textAngular.validators', [])
             };
         }
     };
+}).directive('taMaxHtml', function(){
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl){
+            var max = parseInt(scope.$eval(attrs.taMaxHtml));
+            if (isNaN(max)){
+                throw('Max html must be an integer');
+            }
+            attrs.$observe('taMaxHtml', function(value){
+                max = parseInt(value);
+                if (isNaN(max)){
+                    throw('Max html must be an integer');
+                }
+                if (ctrl.$dirty){
+                    ctrl.$validate();
+                }
+            });
+            ctrl.$validators.taMaxHtml = function(viewValue){
+                return (viewValue || '').length <= max;
+            };
+        }
+    };
 });
 angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'])
 .service('_taBlankTest', [function(){
